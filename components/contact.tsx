@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -10,19 +10,20 @@ import { Send } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import emailjs from "@emailjs/browser"
 
+// Add type safety for environment variables
+const EMAIL_SERVICE_ID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID
+const EMAIL_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID
+const EMAIL_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY
+
+
 export function Contact() {
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
   const form = useRef<HTMLFormElement>(null)
-
-  useEffect(() => {
-    // This ensures the toast is properly initialized
-    toast({
-      title: "Welcome",
-      description: "Feel free to reach out!",
-    })
-  }, [toast])
-
+  
+  if (!EMAIL_SERVICE_ID || !EMAIL_TEMPLATE_ID || !EMAIL_PUBLIC_KEY) {
+    throw new Error("Missing EmailJS environment variables")
+  }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!form.current) return
@@ -30,21 +31,24 @@ export function Contact() {
     try {
       setIsLoading(true)
       await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        EMAIL_SERVICE_ID,
+        EMAIL_TEMPLATE_ID,
         form.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        EMAIL_PUBLIC_KEY
       )
       form.current.reset()
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
+        duration: 5000,
       })
-    } catch {
+    } catch (error) {
+      console.error("Failed to send email:", error)
       toast({
         title: "Something went wrong!",
         description: "Please try again later or contact me through other means.",
         variant: "destructive",
+        duration: 5000,
       })
     } finally {
       setIsLoading(false)
