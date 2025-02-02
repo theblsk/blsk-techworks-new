@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -95,6 +96,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
           <Toaster />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
