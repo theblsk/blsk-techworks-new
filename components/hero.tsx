@@ -12,7 +12,7 @@ export function Hero() {
             I build solutions for the web and mobile.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground min-h-[4em] md:min-h-[3em] opacity-0 animate-fade-in-delay">
-            Senior Software engineer specializing in building exceptional web and mobile applications. Turning ideas into reality
+            Senior Software Engineer specialized in building exceptional web and mobile applications. Turning ideas into reality
             through clean code and thoughtful design.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 min-h-[88px] sm:min-h-[44px] opacity-0 animate-fade-in-delay-2">
