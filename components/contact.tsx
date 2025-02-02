@@ -70,7 +70,7 @@ export function Contact() {
                     </label>
                     <Input 
                       id="name" 
-                      name="from_name" 
+                      name="name" 
                       placeholder="Your name" 
                       required 
                       className="h-10"
@@ -82,7 +82,7 @@ export function Contact() {
                     </label>
                     <Input 
                       id="email" 
-                      name="from_email" 
+                      name="email" 
                       type="email" 
                       placeholder="Your email" 
                       required 
