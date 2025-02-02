@@ -5,11 +5,11 @@ export function middleware() {
 
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://*.vercel-scripts.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' data: blob: https:;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://api.emailjs.com;
+    connect-src 'self' https://api.emailjs.com https://*.vercel-insights.com https://va.vercel-scripts.com;
     object-src 'none';
     base-uri 'self';
     form-action 'self';

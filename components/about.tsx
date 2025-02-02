@@ -30,7 +30,8 @@ export function About() {
           >
             <Card>
               <CardContent className="p-6">
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-base leading-7 font-normal antialiased"
+                   style={{ textRendering: 'optimizeLegibility' }}>
                   At the tender age of 12, I embarked on an enthralling voyage into the dazzling world of technology. My
                   very own computer became my newfound passion, so much so that I would eagerly delve into its mysteries
                   until the wee hours of the morning, even on school nights.
@@ -46,7 +47,8 @@ export function About() {
           >
             <Card>
               <CardContent className="p-6">
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-base leading-7 font-normal antialiased"
+                   style={{ textRendering: 'optimizeLegibility' }}>
                   As time passed, my appetite for knowledge grew, leading me to delve into the exciting realm of
                   development. Eventually, I made a pivotal decision to enroll in a transformative Full Stack
                   Development bootcamp, propelling my career forward at the promising dawn of January 1st, 2020.

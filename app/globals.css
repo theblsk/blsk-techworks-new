@@ -23,6 +23,7 @@
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 263.4 70% 50.4%;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -73,26 +74,33 @@
   z-index: -1;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@layer utilities {
+  .text-render-optimized {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-display: swap;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in forwards;
   }
-}
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
+  .animate-fade-in-delay {
+    animation: fadeIn 0.5s ease-in 0.2s forwards;
+  }
 
-.animate-fade-in-delay {
-  animation: fadeIn 0.5s ease-out 0.2s forwards;
-}
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 0.5s ease-in 0.4s forwards;
+  }
 
-.animate-fade-in-delay-2 {
-  animation: fadeIn 0.5s ease-out 0.4s forwards;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 

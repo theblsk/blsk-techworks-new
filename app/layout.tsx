@@ -11,6 +11,9 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
   preload: true,
   variable: '--font-space-grotesk',
+  weight: ['400', '700'],
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: true
 })
 
 export const viewport: Viewport = {
