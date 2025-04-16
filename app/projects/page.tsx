@@ -2,6 +2,8 @@ import { getProjects } from "@/lib/getProjects"
 import { Projects } from "@/components/projects"
 import { Suspense } from "react"
 
+export const revalidate = 900;
+
 export default async function ProjectsPage() {
   try {
     const projects = await getProjects()
