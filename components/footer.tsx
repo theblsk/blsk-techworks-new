@@ -1,18 +1,35 @@
+import Link from "next/link"
+import Image from "next/image"
+
 export function Footer() {
   return (
-    <footer className="py-8 border-t">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center space-x-2">
-            <span className="text-xl font-bold">BLSK</span>
-            <span className="text-xl font-bold text-primary">TECHWORKS</span>
+    <footer className="py-12 border-t border-border/50">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+          <div className="flex items-center gap-2.5">
+            <Image
+              src="/logo.png"
+              alt="BLSK Labs logo"
+              width={24}
+              height={24}
+              className="shrink-0"
+            />
+            <Link href="/" className="text-lg font-semibold tracking-tight">
+              BLSK Labs
+            </Link>
           </div>
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} BLSK TECHWORKS. All rights reserved.
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 text-sm text-muted-foreground">
+            <Link href="#work" className="hover:text-foreground transition-colors">Work</Link>
+            <Link href="#process" className="hover:text-foreground transition-colors">Process</Link>
+            <Link href="#contact" className="hover:text-foreground transition-colors">Contact</Link>
+          </div>
+        </div>
+        <div className="mt-12 pt-8 border-t border-border/30">
+          <p className="text-xs text-muted-foreground">
+            &copy; {new Date().getFullYear()} BLSK Labs. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
   )
 }
-

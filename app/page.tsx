@@ -1,27 +1,23 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
-import { About } from "@/components/about"
-import { Services } from "@/components/services"
-import { Projects } from "@/components/projects"
+import { WhatWeDo } from "@/components/what-we-do"
+import { SelectedWork } from "@/components/selected-work"
+import { Process } from "@/components/process"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
-import { getProjects } from "@/lib/getProjects"
 
-export default async function Home() {
-  const projects = await getProjects()
-
+export default function Home() {
   return (
-    <div className="min-h-screen gradient-bg">
+    <div className="min-h-screen">
       <Header />
-      <main className="container mx-auto px-4">
+      <main>
         <Hero />
-        <About />
-        <Services />
-        <Projects projects={projects} />
+        <WhatWeDo />
+        <SelectedWork />
+        <Process />
         <Contact />
       </main>
       <Footer />
     </div>
   )
 }
-
