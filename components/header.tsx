@@ -5,8 +5,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { siteConfig } from "@/lib/site-content"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -26,9 +27,10 @@ export function Header() {
   )
 
   const navItems = [
-    { href: "#work", label: "Work" },
-    { href: "#process", label: "Process" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#services", label: "Services" },
+    { href: "/#work", label: "Work" },
+    { href: "/#engagements", label: "Engagements" },
+    { href: "/#process", label: "Process" },
   ]
 
   return (
@@ -59,7 +61,7 @@ export function Header() {
               ))}
               <ThemeToggle />
               <Button asChild size="sm" className="h-9 px-5">
-                <Link href="#contact">Start a project</Link>
+                <a href={siteConfig.bookingUrl}>Book a call</a>
               </Button>
             </nav>
             <Sheet>
@@ -69,6 +71,7 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent>
+                <SheetTitle className="sr-only">Main navigation</SheetTitle>
                 <nav className="flex flex-col gap-6 mt-8">
                   {navItems.map((item) => (
                     <Link
@@ -81,7 +84,7 @@ export function Header() {
                   ))}
                   <ThemeToggle />
                   <Button asChild className="w-full">
-                    <Link href="#contact">Start a project</Link>
+                    <a href={siteConfig.bookingUrl}>Book a call</a>
                   </Button>
                 </nav>
               </SheetContent>

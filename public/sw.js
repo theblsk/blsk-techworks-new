@@ -1,8 +1,8 @@
-const CACHE_VERSION = "blsk-runtime-v1"
+const CACHE_VERSION = "blsk-runtime-v3"
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 const OFFLINE_URL = "/offline.html"
-const PRECACHE_URLS = [OFFLINE_URL, "/site.webmanifest"]
+const PRECACHE_URLS = [OFFLINE_URL, "/site.webmanifest", "/brand-tokens.css"]
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -42,10 +42,11 @@ self.addEventListener("fetch", (event) => {
     return
   }
 
-  if (
-    requestUrl.pathname.startsWith("/_next/static/") ||
-    ["style", "script", "font", "image"].includes(event.request.destination)
-  ) {
+  // Next's JS, CSS, and route assets are build-coupled. Serving an older cached
+  // chunk with newer HTML can prevent hydration and leave motion elements hidden.
+  // Let the browser and Next manage those assets; the service worker only owns
+  // offline navigation fallback and ordinary media caching.
+  if (["font", "image"].includes(event.request.destination)) {
     event.respondWith(staleWhileRevalidate(event.request, STATIC_CACHE))
   }
 })

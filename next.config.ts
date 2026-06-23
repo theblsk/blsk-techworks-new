@@ -46,6 +46,7 @@ const nextConfig: NextConfig = {
             "img-src 'self' data: blob: https:",
             "font-src 'self' https://fonts.gstatic.com",
             "connect-src 'self' https://api.emailjs.com https://*.vercel-insights.com https://va.vercel-scripts.com",
+            "frame-src 'self' https://cal.com https://*.cal.com https://calendly.com https://*.calendly.com",
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
@@ -53,6 +54,20 @@ const nextConfig: NextConfig = {
             "upgrade-insecure-requests",
           ].join("; "),
         },
+        ...(process.env.NODE_ENV !== "production"
+          ? [
+              {
+                // A previous production worker can otherwise keep serving stale
+                // Turbopack chunks on localhost after a code change.
+                key: "Clear-Site-Data",
+                value: '"cache", "storage"',
+              },
+              {
+                key: "Cache-Control",
+                value: "no-store",
+              },
+            ]
+          : []),
       ],
     },
   ],

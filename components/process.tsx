@@ -1,8 +1,4 @@
-"use client"
-
-import dynamic from "next/dynamic"
-
-const MotionDiv = dynamic(() => import("framer-motion").then((mod) => mod.motion.div), { ssr: true })
+import { Eyebrow } from "@/components/eyebrow"
 
 const steps = [
   {
@@ -31,48 +27,26 @@ const steps = [
   },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
 export function Process() {
   return (
     <section id="process" className="py-24 md:py-32 border-t border-border/50">
       <div className="max-w-6xl mx-auto px-6">
-        <MotionDiv
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          <MotionDiv variants={item} className="max-w-2xl mb-16">
-            <p className="text-sm tracking-widest uppercase text-muted-foreground mb-4">How we work</p>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-              A structured process from strategy to launch.
+        <div>
+          <div className="max-w-2xl mb-16">
+            <Eyebrow className="mb-5">How we work</Eyebrow>
+            <h2 className="text-3xl md:text-4xl tracking-tight">
+              A clear route from the first conversation to production.
             </h2>
-          </MotionDiv>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             {steps.map((step) => (
-              <MotionDiv
+              <div
                 key={step.number}
-                variants={item}
                 className="group"
               >
                 <div className="flex gap-6">
-                  <span className="text-4xl font-semibold text-border/80 group-hover:text-foreground/20 transition-colors flex-shrink-0 leading-none">
+                  <span className="font-mono text-3xl font-medium text-primary/70 group-hover:text-primary transition-colors shrink-0 leading-none">
                     {step.number}
                   </span>
                   <div>
@@ -80,10 +54,10 @@ export function Process() {
                     <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                   </div>
                 </div>
-              </MotionDiv>
+              </div>
             ))}
           </div>
-        </MotionDiv>
+        </div>
       </div>
     </section>
   )
