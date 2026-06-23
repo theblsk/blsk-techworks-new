@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "BLSK Labs",
+  tagline: "Independent Software Delivery",
   url: "https://blsk.dev",
   email: "sales@blsk.dev",
   bookingUrl:

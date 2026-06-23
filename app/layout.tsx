@@ -52,10 +52,12 @@ export const viewport: Viewport = {
   userScalable: true,
 }
 
+const defaultTitle = `${siteConfig.name} | ${siteConfig.tagline}`
+
 export const metadata: Metadata = {
   title: {
-    default: "BLSK Labs | Independent Software Delivery",
-    template: "%s | BLSK Labs",
+    default: defaultTitle,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
@@ -79,7 +81,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "BLSK Labs | Independent Software Delivery",
+    title: defaultTitle,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -96,7 +98,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "BLSK Labs | Independent Software Delivery",
+    title: defaultTitle,
     description: siteConfig.description,
     images: ["/logo.png"],
   },
