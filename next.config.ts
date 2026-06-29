@@ -1,5 +1,20 @@
 import type { NextConfig } from "next"
 
+function getUmamiOrigin(): string | null {
+  const scriptUrl = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL
+  if (!scriptUrl) {
+    return null
+  }
+
+  try {
+    return new URL(scriptUrl).origin
+  } catch {
+    return null
+  }
+}
+
+const umamiOrigin = getUmamiOrigin()
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -41,11 +56,11 @@ const nextConfig: NextConfig = {
           key: "Content-Security-Policy",
           value: [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://*.vercel-scripts.com",
+            `script-src 'self' 'unsafe-eval' 'unsafe-inline'${umamiOrigin ? ` ${umamiOrigin}` : ""}`,
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             "img-src 'self' data: blob: https:",
             "font-src 'self' https://fonts.gstatic.com",
-            "connect-src 'self' https://api.emailjs.com https://*.vercel-insights.com https://va.vercel-scripts.com",
+            `connect-src 'self' https://api.emailjs.com${umamiOrigin ? ` ${umamiOrigin}` : ""}`,
             "frame-src 'self' https://cal.com https://*.cal.com https://calendly.com https://*.calendly.com",
             "object-src 'none'",
             "base-uri 'self'",

@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
 import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { PWARegister } from "@/components/pwa-register"
+import { UmamiAnalytics } from "@/components/umami-analytics"
 import { Toaster } from "@/components/ui/toaster"
 import { siteConfig } from "@/lib/site-content"
 import type React from "react"
@@ -148,8 +147,7 @@ export default function RootLayout({
           <PWARegister />
           {children}
           <Toaster />
-          <SpeedInsights />
-          <Analytics />
+          <UmamiAnalytics />
         </ThemeProvider>
       </body>
     </html>
