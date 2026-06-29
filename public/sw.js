@@ -1,1 +1,101 @@
-if(!self.define){let e,s={};const n=(n,a)=>(n=new URL(n+".js",a).href,s[n]||new Promise((s=>{if("document"in self){const e=document.createElement("script");e.src=n,e.onload=s,document.head.appendChild(e)}else e=n,importScripts(n),s()})).then((()=>{let e=s[n];if(!e)throw new Error(`Module ${n} didn’t register its module`);return e})));self.define=(a,i)=>{const c=e||("document"in self?document.currentScript.src:"")||location.href;if(s[c])return;let t={};const r=e=>n(e,c),o={module:{uri:c},exports:t,require:r};s[c]=Promise.all(a.map((e=>o[e]||r(e)))).then((e=>(i(...e),t)))}}define(["./workbox-4754cb34"],(function(e){"use strict";importScripts(),self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"/_next/app-build-manifest.json",revision:"f7d772d191244412dee565d49502d082"},{url:"/_next/static/chunks/117-66f6bbbdaaaf866d.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/223.97fbc89dbe48cc1e.js",revision:"97fbc89dbe48cc1e"},{url:"/_next/static/chunks/336-3a93d0994ff19be8.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/494-9e02526dd39c466d.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/627-e13322c7fa07ef6e.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/708-bc62801a7ddc700c.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/804-00487f40c5995b78.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/838.d6a02814cba560df.js",revision:"d6a02814cba560df"},{url:"/_next/static/chunks/app/_not-found/page-16412175b3cb5fd4.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/app/layout-bd3a59a1558c4879.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/app/page-36dec613f754f862.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/app/projects/loading-c7c5ca27dbfd43b8.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/app/projects/page-bca7f052712b109b.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/fd9d1056-af3794705dd51b99.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/framework-f66176bb897dc684.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/main-app-490816e3b67ba4cf.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/main-cbdd9ee8875ac4f9.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/pages/_app-72b849fbd24ac258.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/pages/_error-7ba65e1336b92748.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/chunks/polyfills-42372ed130431b0a.js",revision:"846118c33b2c0e922d7b3a7676f81f6f"},{url:"/_next/static/chunks/webpack-9a16cfcb337d7f39.js",revision:"sHWsa8lxDn1qJA8jK_9Rp"},{url:"/_next/static/css/6a24e2d34c148588.css",revision:"6a24e2d34c148588"},{url:"/_next/static/media/2d141e1a38819612-s.p.woff2",revision:"acb6ad8efbc88ce55fcc0639a5d0a211"},{url:"/_next/static/media/62328fecf9e80426-s.woff2",revision:"138c8f78129c50d2783bf0fe261d32af"},{url:"/_next/static/media/c7eb187887c48af6-s.woff2",revision:"361fa9642b5371651338f1af9f725f7e"},{url:"/_next/static/sHWsa8lxDn1qJA8jK_9Rp/_buildManifest.js",revision:"c155cce658e53418dec34664328b51ac"},{url:"/_next/static/sHWsa8lxDn1qJA8jK_9Rp/_ssgManifest.js",revision:"b6652df95db52feb4daf4eca35380933"},{url:"/android-chrome-192x192.png",revision:"369896a6ffe19b522e690b05187f56f3"},{url:"/android-chrome-512x512.png",revision:"73a6d22f49a9eb7d4a1bde399810632c"},{url:"/apple-touch-icon.png",revision:"aa837a2de1e535e6c36c7c694a431144"},{url:"/favicon-16x16.png",revision:"a310188d5839c4aa8862173c54708496"},{url:"/favicon-32x32.png",revision:"1adffda379a2e1d7cd2c4cffcb175e47"},{url:"/favicon.ico",revision:"11725ebcd250acba1f4bb49a9c89f8f2"},{url:"/placeholder.jpg",revision:"d41d8cd98f00b204e9800998ecf8427e"},{url:"/site.webmanifest",revision:"f1e3d818f29be3b6d66add0c793cff5b"}],{ignoreURLParametersMatching:[]}),e.cleanupOutdatedCaches(),e.registerRoute("/",new e.NetworkFirst({cacheName:"start-url",plugins:[{cacheWillUpdate:async({request:e,response:s,event:n,state:a})=>s&&"opaqueredirect"===s.type?new Response(s.body,{status:200,statusText:"OK",headers:s.headers}):s}]}),"GET"),e.registerRoute(/^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,new e.CacheFirst({cacheName:"google-fonts-webfonts",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:31536e3})]}),"GET"),e.registerRoute(/^https:\/\/fonts\.(?:googleapis)\.com\/.*/i,new e.StaleWhileRevalidate({cacheName:"google-fonts-stylesheets",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:604800})]}),"GET"),e.registerRoute(/\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i,new e.StaleWhileRevalidate({cacheName:"static-font-assets",plugins:[new e.ExpirationPlugin({maxEntries:4,maxAgeSeconds:604800})]}),"GET"),e.registerRoute(/\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,new e.StaleWhileRevalidate({cacheName:"static-image-assets",plugins:[new e.ExpirationPlugin({maxEntries:64,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\/_next\/image\?url=.+$/i,new e.StaleWhileRevalidate({cacheName:"next-image",plugins:[new e.ExpirationPlugin({maxEntries:64,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:mp3|wav|ogg)$/i,new e.CacheFirst({cacheName:"static-audio-assets",plugins:[new e.RangeRequestsPlugin,new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:mp4)$/i,new e.CacheFirst({cacheName:"static-video-assets",plugins:[new e.RangeRequestsPlugin,new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:js)$/i,new e.StaleWhileRevalidate({cacheName:"static-js-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:css|less)$/i,new e.StaleWhileRevalidate({cacheName:"static-style-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\/_next\/data\/.+\/.+\.json$/i,new e.StaleWhileRevalidate({cacheName:"next-data",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute(/\.(?:json|xml|csv)$/i,new e.NetworkFirst({cacheName:"static-data-assets",plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute((({url:e})=>{if(!(self.origin===e.origin))return!1;const s=e.pathname;return!s.startsWith("/api/auth/")&&!!s.startsWith("/api/")}),new e.NetworkFirst({cacheName:"apis",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:16,maxAgeSeconds:86400})]}),"GET"),e.registerRoute((({url:e})=>{if(!(self.origin===e.origin))return!1;return!e.pathname.startsWith("/api/")}),new e.NetworkFirst({cacheName:"others",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:86400})]}),"GET"),e.registerRoute((({url:e})=>!(self.origin===e.origin)),new e.NetworkFirst({cacheName:"cross-origin",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:32,maxAgeSeconds:3600})]}),"GET")}));
+const CACHE_VERSION = "blsk-runtime-v3"
+const STATIC_CACHE = `${CACHE_VERSION}-static`
+const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
+const OFFLINE_URL = "/offline.html"
+const PRECACHE_URLS = [OFFLINE_URL, "/site.webmanifest", "/brand-tokens.css"]
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(STATIC_CACHE).then((cache) => {
+      return cache.addAll(PRECACHE_URLS)
+    })
+  )
+  self.skipWaiting()
+})
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) =>
+      Promise.all([
+        ...cacheNames
+          .filter((cacheName) => ![STATIC_CACHE, RUNTIME_CACHE].includes(cacheName))
+          .map((cacheName) => caches.delete(cacheName)),
+        clients.claim(),
+      ])
+    )
+  )
+})
+
+self.addEventListener("fetch", (event) => {
+  if (event.request.method !== "GET") {
+    return
+  }
+
+  const requestUrl = new URL(event.request.url)
+
+  if (requestUrl.origin !== self.location.origin) {
+    return
+  }
+
+  if (event.request.mode === "navigate") {
+    event.respondWith(handleNavigationRequest(event.request))
+    return
+  }
+
+  // Next's JS, CSS, and route assets are build-coupled. Serving an older cached
+  // chunk with newer HTML can prevent hydration and leave motion elements hidden.
+  // Let the browser and Next manage those assets; the service worker only owns
+  // offline navigation fallback and ordinary media caching.
+  if (["font", "image"].includes(event.request.destination)) {
+    event.respondWith(staleWhileRevalidate(event.request, STATIC_CACHE))
+  }
+})
+
+async function handleNavigationRequest(request) {
+  try {
+    const networkResponse = await fetch(request)
+
+    if (networkResponse.ok) {
+      const cache = await caches.open(RUNTIME_CACHE)
+      await cache.put(request, networkResponse.clone())
+    }
+
+    return networkResponse
+  } catch {
+    const cachedResponse = await caches.match(request)
+
+    if (cachedResponse) {
+      return cachedResponse
+    }
+
+    return caches.match(OFFLINE_URL)
+  }
+}
+
+async function staleWhileRevalidate(request, cacheName) {
+  const cache = await caches.open(cacheName)
+  const cachedResponse = await cache.match(request)
+
+  const networkResponsePromise = fetch(request)
+    .then((networkResponse) => {
+      if (networkResponse.ok) {
+        void cache.put(request, networkResponse.clone())
+      }
+
+      return networkResponse
+    })
+    .catch(() => undefined)
+
+  if (cachedResponse) {
+    void networkResponsePromise
+    return cachedResponse
+  }
+
+  const networkResponse = await networkResponsePromise
+
+  if (networkResponse) {
+    return networkResponse
+  }
+
+  throw new Error("Asset request failed")
+}

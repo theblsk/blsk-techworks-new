@@ -2,10 +2,12 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { siteConfig } from "@/lib/site-content"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -15,56 +17,53 @@ export function Header() {
   }, [])
 
   React.useEffect(() => {
+    handleScroll()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
 
   const headerClass = React.useMemo(
-    () => `fixed w-full top-0 z-50 transition-all duration-300 h-16 ${isScrolled ? "bg-background/80 backdrop-blur-sm" : ""}`,
+    () => `fixed w-full top-0 z-50 transition-all duration-300 h-16 ${isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border/50" : ""}`,
     [isScrolled]
   )
 
-  const NavLinks = React.memo(() => (
-    <>
-      <Link href="#about" className="text-sm hover:text-primary transition-colors h-9 flex items-center">
-        About
-      </Link>
-      <Link href="#services" className="text-sm hover:text-primary transition-colors h-9 flex items-center">
-        Services
-      </Link>
-      <Link href="#projects" className="text-sm hover:text-primary transition-colors h-9 flex items-center">
-        Projects
-      </Link>
-      <ThemeToggle />
-      <Button asChild className="h-9 w-[160px]">
-        <Link href="#contact" className="inline-flex items-center justify-center">
-          Let&apos;s work together!
-        </Link>
-      </Button>
-    </>
-  ))
-  NavLinks.displayName = "NavLinks"
+  const navItems = [
+    { href: "/#services", label: "Services" },
+    { href: "/#work", label: "Work" },
+    { href: "/#engagements", label: "Engagements" },
+    { href: "/#process", label: "Process" },
+  ]
 
   return (
     <>
       <header className={headerClass}>
-        <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2 h-9">
-              <span className="text-xl font-bold text-render-optimized">BLSK</span>
-              <span 
-                className="text-xl font-bold text-primary text-render-optimized"
-                style={{
-                  textRendering: 'optimizeLegibility',
-                  WebkitFontSmoothing: 'antialiased',
-                  MozOsxFontSmoothing: 'grayscale'
-                }}
-              >
-                TECHWORKS
-              </span>
+            <Link href="/" className="flex items-center gap-2.5 h-9">
+              <Image
+                src="/logo.png"
+                alt="BLSK Labs logo"
+                width={28}
+                height={28}
+                className="flex-shrink-0"
+                priority
+              />
+              <span className="text-lg font-semibold tracking-tight text-render-optimized">BLSK Labs</span>
             </Link>
-            <nav className="hidden md:flex items-center space-x-6">
-              <NavLinks />
+            <nav className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <ThemeToggle />
+              <Button asChild size="sm" className="h-9 px-5">
+                <a href={siteConfig.bookingUrl}>Book a call</a>
+              </Button>
             </nav>
             <Sheet>
               <SheetTrigger asChild className="md:hidden">
@@ -73,16 +72,31 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent>
-                <nav className="flex flex-col space-y-4 mt-6">
-                  <NavLinks />
+                <SheetTitle className="sr-only">Main navigation</SheetTitle>
+                <nav className="flex flex-col gap-6 mt-8">
+                  {navItems.map((item) => (
+                    <SheetClose asChild key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="text-lg text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                  <ThemeToggle />
+                  <SheetClose asChild>
+                    <Button asChild className="w-full">
+                      <a href={siteConfig.bookingUrl}>Book a call</a>
+                    </Button>
+                  </SheetClose>
                 </nav>
               </SheetContent>
             </Sheet>
           </div>
         </div>
       </header>
-      <div className="h-16" /> {/* Spacer to prevent content from jumping under fixed header */}
+      <div className="h-16" />
     </>
   )
 }
-

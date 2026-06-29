@@ -1,132 +1,58 @@
-"use client"
-
-import { useState, useRef } from "react"
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Send } from "lucide-react"
-import { sendEmail } from "@/lib/sendEmail"
-import { useToast } from "@/components/ui/use-toast"
+import { ArrowRight, Mail } from "lucide-react"
+import { Eyebrow } from "@/components/eyebrow"
+import { siteConfig } from "@/lib/site-content"
 
 export function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const formRef = useRef<HTMLFormElement>(null)
-  const { toast } = useToast()
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      const result = await sendEmail(e.currentTarget)
-
-      if (result.success) {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        })
-        formRef.current?.reset()
-      } else {
-        throw new Error("Failed to send message")
-      }
-    } catch (error) {
-      console.error("Error sending email:", error)
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
-    <section id="contact" className="min-h-screen py-16 flex flex-col justify-center">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="container mx-auto px-4"
-      >
-        <h2 className="text-3xl font-bold mb-8 min-h-[2.5rem] flex items-center justify-center">Let&apos;s work together!</h2>
-        <div className="max-w-2xl mx-auto">
-          <Card>
-            <CardContent className="p-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="min-h-[500px]"
-              >
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2 min-h-[5rem]">
-                    <label htmlFor="name" className="text-sm font-medium block h-5">
-                      Name
-                    </label>
-                    <Input 
-                      id="name" 
-                      name="name" 
-                      placeholder="Your name" 
-                      required 
-                      className="h-10"
-                    />
-                  </div>
-                  <div className="space-y-2 min-h-[5rem]">
-                    <label htmlFor="email" className="text-sm font-medium block h-5">
-                      Email
-                    </label>
-                    <Input 
-                      id="email" 
-                      name="email" 
-                      type="email" 
-                      placeholder="Your email" 
-                      required 
-                      className="h-10"
-                    />
-                  </div>
-                  <div className="space-y-2 min-h-[5rem]">
-                    <label htmlFor="subject" className="text-sm font-medium block h-5">
-                      Subject
-                    </label>
-                    <Input 
-                      id="subject" 
-                      name="subject" 
-                      placeholder="Message subject" 
-                      required 
-                      className="h-10"
-                    />
-                  </div>
-                  <div className="space-y-2 min-h-[10rem]">
-                    <label htmlFor="message" className="text-sm font-medium block h-5">
-                      Message
-                    </label>
-                    <Textarea 
-                      id="message" 
-                      name="message" 
-                      placeholder="Tell me about your project" 
-                      rows={6} 
-                      required 
-                      className="min-h-[144px] resize-y"
-                    />
-                  </div>
-                  <div className="min-h-[44px]">
-                    <Button type="submit" className="w-full h-11" disabled={isSubmitting}>
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                      <Send className="ml-2 h-4 w-4 flex-shrink-0" />
-                    </Button>
-                  </div>
-                </form>
-              </motion.div>
-            </CardContent>
-          </Card>
+    <section id="contact" className="py-24 md:py-32 border-t border-border/50">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
+          <div>
+            <Eyebrow className="mb-5">Get in touch</Eyebrow>
+            <h2 className="text-3xl md:text-4xl tracking-tight mb-6">
+              Book a discovery call.
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Use the call to explain what you are building, where the product is stuck, or what kind
+              of engineering help you need. We will discuss the next practical step and say so directly
+              if the work is not a fit.
+            </p>
+            <div className="space-y-4 text-sm text-muted-foreground">
+              <p>Available for remote engagements worldwide</p>
+              <p>Hourly, fixed-scope, and retainer work available</p>
+            </div>
+          </div>
+
+          <div>
+            <div className="border-y border-border/50 py-8">
+              <div className="space-y-6">
+                <div>
+                  <p className="text-sm text-muted-foreground">Best first step</p>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-tight">15- or 30-minute introductory call</h3>
+                  <p className="mt-3 text-muted-foreground leading-relaxed">
+                    Bring the goal, current state, timeline, and any technical constraints. We will use
+                    the conversation to understand the problem before recommending an engagement.
+                  </p>
+                </div>
+                <Button asChild size="lg" className="h-12 w-full">
+                  <a href={siteConfig.bookingUrl}>
+                    Book a call
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  {siteConfig.email}
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
-

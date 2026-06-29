@@ -1,0 +1,65 @@
+/**
+ * Canonical brand color tokens (logo blue → purple gradient).
+ * Imported by app/globals.css. Offline page links here directly.
+ */
+:root {
+  /* Logo gradient endpoints */
+  --signal: 202 78% 45%;
+  --patina: 282 52% 47%;
+
+  /* Surfaces */
+  --background: 220 20% 98%;
+  --foreground: 220 18% 12%;
+  --card: 220 24% 99%;
+  --card-foreground: 220 18% 12%;
+  --popover: 220 24% 99%;
+  --popover-foreground: 220 18% 12%;
+
+  /* Semantic accents */
+  --primary: var(--signal);
+  --primary-foreground: 210 40% 98%;
+  --secondary: 220 14% 93%;
+  --secondary-foreground: 220 18% 16%;
+  --muted: 220 14% 93%;
+  --muted-foreground: 220 8% 40%;
+  --accent: 220 16% 91%;
+  --accent-foreground: 220 18% 16%;
+  --destructive: 0 72% 45%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 220 13% 87%;
+  --input: 220 13% 85%;
+  --ring: var(--signal);
+  --radius: 0.25rem;
+
+  /* Hex mirrors for PWA / browser chrome (keep site.webmanifest in sync) */
+  --viewport-theme-color-light: #f9fafb;
+  --viewport-theme-color-dark: #0f1115;
+  --manifest-theme-color: #4cb4f0;
+  --manifest-background-color: #0f1115;
+}
+
+.dark {
+  --signal: 202 85% 62%;
+  --patina: 282 60% 70%;
+
+  --background: 222 16% 7%;
+  --foreground: 215 16% 90%;
+  --card: 222 14% 9.5%;
+  --card-foreground: 215 16% 90%;
+  --popover: 222 15% 8.5%;
+  --popover-foreground: 215 16% 90%;
+
+  --primary: var(--signal);
+  --primary-foreground: 215 40% 10%;
+  --secondary: 220 10% 15%;
+  --secondary-foreground: 215 16% 90%;
+  --muted: 220 10% 14%;
+  --muted-foreground: 216 10% 60%;
+  --accent: 220 11% 16%;
+  --accent-foreground: 215 16% 92%;
+  --destructive: 0 62% 45%;
+  --destructive-foreground: 215 16% 96%;
+  --border: 220 10% 17%;
+  --input: 220 10% 19%;
+  --ring: var(--signal);
+}

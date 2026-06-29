@@ -1,26 +1,49 @@
 import type { Metadata, Viewport } from "next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
-import { Space_Grotesk } from "next/font/google"
+import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { PWARegister } from "@/components/pwa-register"
+import { UmamiAnalytics } from "@/components/umami-analytics"
 import { Toaster } from "@/components/ui/toaster"
+import { siteConfig } from "@/lib/site-content"
 import type React from "react"
 
-const spaceGrotesk = Space_Grotesk({ 
+/** Hex values mirror --viewport-theme-color-* in public/brand-tokens.css */
+const viewportThemeColors = {
+  light: "#f9fafb",
+  dark: "#0f1115",
+} as const
+
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  display: 'swap',
+  display: "swap",
   preload: true,
-  variable: '--font-space-grotesk',
-  weight: ['400', '700'],
-  fallback: ['system-ui', 'arial'],
-  adjustFontFallback: true
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-sans",
+  fallback: ["system-ui", "arial"],
+})
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  fallback: ["ui-monospace", "monospace"],
+})
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  fallback: ["Georgia", "serif"],
 })
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" }
+    { media: "(prefers-color-scheme: light)", color: viewportThemeColors.dark },
+    { media: "(prefers-color-scheme: dark)", color: viewportThemeColors.dark },
   ],
   width: "device-width",
   initialScale: 1,
@@ -28,42 +51,66 @@ export const viewport: Viewport = {
   userScalable: true,
 }
 
+const defaultTitle = `${siteConfig.name} | ${siteConfig.tagline}`
+
 export const metadata: Metadata = {
-  title: "BLSK - Software Solutions",
-  description: "Building exceptional web and mobile applications",
+  title: {
+    default: defaultTitle,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [
+    "custom software development",
+    "software development company",
+    "web application development",
+    "mobile app development",
+    "SaaS development",
+    "backend development",
+    "API development",
+    "BLSK Labs",
+  ],
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "Software Development",
   manifest: "/site.webmanifest",
-  metadataBase: new URL('https://blsk.dev'),
+  metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "BLSK - Software Solutions",
-    description: "Building exceptional web and mobile applications",
-    url: 'https://blsk.dev',
-    siteName: 'BLSK',
+    title: defaultTitle,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "BLSK - Software Solutions",
-    description: "Building exceptional web and mobile applications",
+    title: defaultTitle,
+    description: siteConfig.description,
+    images: ["/logo.png"],
   },
   icons: {
     icon: [
+      { url: "/favicon.ico" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
     ],
+    shortcut: ["/favicon.ico"],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
     ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/safari-pinned-tab.svg",
-        color: "#5bbad5"
-      }
-    ]
   },
   robots: {
     index: true,
@@ -84,27 +131,25 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`scroll-smooth ${plexSans.variable} ${plexMono.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <meta httpEquiv="X-DNS-Prefetch-Control" content="on" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
-      <body className={spaceGrotesk.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <body className="font-sans">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <PWARegister />
           {children}
           <Toaster />
-          <SpeedInsights />
-          <Analytics />
+          <UmamiAnalytics />
         </ThemeProvider>
       </body>
     </html>
   )
 }
-
