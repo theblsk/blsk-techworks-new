@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "BLSK Labs",
   tagline: "Independent Software Delivery",
-  url: "https://blsk.dev",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://blsk.dev",
   email: "sales@blsk.dev",
   bookingUrl:
     process.env.NEXT_PUBLIC_BOOKING_URL ||

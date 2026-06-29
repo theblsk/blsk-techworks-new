@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { siteConfig } from "@/lib/site-content"
 
@@ -17,6 +17,7 @@ export function Header() {
   }, [])
 
   React.useEffect(() => {
+    handleScroll()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [handleScroll])
@@ -74,18 +75,21 @@ export function Header() {
                 <SheetTitle className="sr-only">Main navigation</SheetTitle>
                 <nav className="flex flex-col gap-6 mt-8">
                   {navItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="text-lg text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {item.label}
-                    </Link>
+                    <SheetClose asChild key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="text-lg text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    </SheetClose>
                   ))}
                   <ThemeToggle />
-                  <Button asChild className="w-full">
-                    <a href={siteConfig.bookingUrl}>Book a call</a>
-                  </Button>
+                  <SheetClose asChild>
+                    <Button asChild className="w-full">
+                      <a href={siteConfig.bookingUrl}>Book a call</a>
+                    </Button>
+                  </SheetClose>
                 </nav>
               </SheetContent>
             </Sheet>

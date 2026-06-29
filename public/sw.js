@@ -15,15 +15,15 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
+    caches.keys().then((cacheNames) =>
+      Promise.all([
+        ...cacheNames
           .filter((cacheName) => ![STATIC_CACHE, RUNTIME_CACHE].includes(cacheName))
-          .map((cacheName) => caches.delete(cacheName))
-      )
-    })
+          .map((cacheName) => caches.delete(cacheName)),
+        clients.claim(),
+      ])
+    )
   )
-  self.clients.claim()
 })
 
 self.addEventListener("fetch", (event) => {

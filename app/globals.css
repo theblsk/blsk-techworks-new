@@ -39,10 +39,10 @@
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
-  --animate-fade-in: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  --animate-fade-in-delay: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards;
-  --animate-fade-in-delay-2: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.24s forwards;
-  --animate-fade-in-delay-3: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.36s forwards;
+  --animate-fade-in: fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-fade-in-delay: fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.12s forwards;
+  --animate-fade-in-delay-2: fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.24s forwards;
+  --animate-fade-in-delay-3: fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.36s forwards;
 }
 
 @layer base {
@@ -84,7 +84,7 @@
   }
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
   from {
     opacity: 0;
     transform: translateY(10px);
