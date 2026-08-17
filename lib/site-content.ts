@@ -200,12 +200,12 @@ export const faqs = [
   {
     question: "What types of companies does BLSK Labs work with?",
     answer:
-      "We work with founders, small teams, and growing businesses worldwide. The best fit is a team that needs a dependable partner to build or improve a web app, mobile app, SaaS product, backend system, or long-term technical capability.",
+      "We work with start-ups, founders, small teams, and growing businesses worldwide. The best fit is a team that needs a dependable partner to build or improve a web app, mobile app, SaaS product, backend system, or long-term technical capability.",
   },
   {
     question: "Do you work with every industry?",
     answer:
-      "We work across many industries, including hospitality, payments, logistics, commerce, operations, and AI-assisted software. We do not take alcohol or gambling projects.",
+      "We work across many industries, including hospitality, payments, logistics, commerce, operations, and AI-assisted software. We do not take liquor nightlife related or gambling projects.",
   },
   {
     question: "Can you work on an existing codebase?",

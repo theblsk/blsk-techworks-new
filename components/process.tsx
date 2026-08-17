@@ -21,7 +21,7 @@ const steps = [
   },
   {
     number: "04",
-    title: "Ship & Support",
+    title: "Ship and Support",
     description:
       "We handle production deployment, monitoring, documentation, and post-launch support so your team can operate the product with confidence.",
   },

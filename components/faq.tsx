@@ -7,7 +7,7 @@ export function FAQ() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Eyebrow className="mb-5">Questions</Eyebrow>
+            <Eyebrow className="mb-5">FAQ</Eyebrow>
             <h2 className="text-3xl md:text-4xl tracking-tight">
               Before a discovery call.
             </h2>
